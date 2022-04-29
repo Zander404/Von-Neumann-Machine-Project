@@ -3,7 +3,7 @@
 #include "Cpu.h"
 
 //Variavéis para a CPU
-unsigned char memoria[154];
+unsigned char memoria[154];//  8 bits
 unsigned int mbr;          // 32 bits
 unsigned int mar;          // 32 bits, mas precisa apenas de 21
 unsigned char ir;          //  8 bits
@@ -13,8 +13,6 @@ unsigned int imm;          // 32 bits, mas deveria ser de 21 bits
 unsigned int pc = 0;       // 32 bits
 unsigned char l, g, e;     //  8 bits
 unsigned int reg[8];       // 32bits
-
-int count = 0;
 
 void busca(){
     mar = pc;
@@ -304,8 +302,11 @@ int main() {
     printf("%x", mbr);
     decodifica();
     executa();
-    printf("\n %x", reg[ro0]);
-    printf("\n %x", reg[0]);
-   // }
+
+
+    //printf("\n %x", reg[ro0]);
+    //printf("\n %x", reg[0]);
+    //printf("\n %x", ir);
+    //}
 
 }
