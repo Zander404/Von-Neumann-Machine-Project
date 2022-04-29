@@ -131,12 +131,14 @@ void executa(){
 
 
     if(ir==and){
+        //Fazer a comparação logica AND entre o registrador ro0 e ro1, e por fim armazenar o resultado em ro0
         reg[ro0]=reg[ro0]&reg[ro1];
         pc+=4;
     }
 
 
     if(ir==or){
+        //Fazer a comparação LOGICA OR entre os registradores ro0 e ro1, e por fim armazenar o resultado em ro0
         reg[ro0]=reg[ro0]|reg[ro1];
         pc+=4;
 
@@ -144,12 +146,14 @@ void executa(){
 
 
     if(ir==xor){
+        //Fazer a comparacao LOGICA XOR( Ou Exclusivo), onde armazenara o resultado no ro0
         reg[ro0]=reg[ro0]^reg[ro1];
         pc+=4;
     }
 
 
     if(ir==not){
+        //Altera o valor atual do registrador ro0 pelo seu inverso
         reg[ro0] = !reg[ro0];
         pc+=4;
 
@@ -157,6 +161,7 @@ void executa(){
 
 
     if(ir==je){
+        //JUMP IF EQUAL:pula para um enderço de memoria, caso executa o valor de E seja igual a 1.
         if(e==1)
             pc = memoria[mar];
 
@@ -165,6 +170,7 @@ void executa(){
 
 
     if(ir==jne){
+        //JUMP NOT EQUAL: caso o valor de e==0, pule para o endereco de memoria do MAR.
         if (e==0)
             pc = memoria[mar];
 
@@ -173,6 +179,7 @@ void executa(){
 
 
     if(ir==jl){
+        // JUMP IF LOWER: caso L == 0, pule para o endereco de memoria MAR.
         if(l==1)
             pc =memoria[mar];
 
@@ -180,6 +187,7 @@ void executa(){
 
 
     if(ir==jle){
+    //JUMP IF LOWER OR EQUAL: caso L==1 ou E==1, pule para o endereco de memoria MAR.
         if(l==1 || e==1)
             pc = memoria[mar];
 
@@ -187,6 +195,7 @@ void executa(){
 
 
     if(ir==jg){
+        //JUMP IF GREATER: caso G == 1,pule para o endereco de memoria MAR.
         if(g==1)
             pc = memoria[mar];
 
@@ -194,6 +203,7 @@ void executa(){
 
 
     if(ir==jge){
+        //JUMP IF GREATER OR EQUAL: caso G==1 ou E==1, pule para o endereco de memoria MAR.
         if(g==1 || e ==1)
             pc = memoria[mar];
 
@@ -201,24 +211,28 @@ void executa(){
 
 
     if(ir==jmp){
+        // JUMP: pule para o endereco de memoria MAR.
         pc = memoria[mar];
 
     }
 
 
     if(ir==ld){
+        //LOAD: Carregue o valor armazenado no endereco de memoria[mar] para o registrador[ro0].
         reg[ro0] = memoria[mar];
 
     }
 
 
     if(ir==st){
+        //STORE: Armazene o valor do registrador[ro0] na posicao de memoria[mar].
         memoria[mar] = reg[ro0];
 
     }
 
 
     if(ir==movi){
+        //MOVI:
         reg[ro0] = imm;
 
     }
@@ -284,7 +298,7 @@ int main() {
     printf("%x", mbr);
     decodifica();
     executa();
-    printf("\n %x", ro0);
+    printf("\n %x", reg[ro0]);
     printf("\n %x", reg[0]);
    // }
 
