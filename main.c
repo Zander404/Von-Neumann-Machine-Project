@@ -232,43 +232,49 @@ void executa(){
 
 
     if(ir==movi){
-        //MOVI:
+        //MOVI: Mover o valor do registrador IMM para o reegistrador RO0.
         reg[ro0] = imm;
 
     }
 
 
     if(ir==addi){
+        //ADDI: Somar o valor do re[ro0] com o valor do registrador IMM.
         reg[ro0] = reg[ro0] + imm;
 
     }
 
 
     if(ir==subi){
+        //SUBI Subtrair o valor do reg[ro0] com o valor de registrador IMM.
         reg[ro0] = reg[ro0] - imm;
 
     }
 
 
     if(ir==multi){
+        //MULT: Multiplica o valor de reh[ro0] com o valor de registrador IMM.
         reg[ro0] = reg[ro0]*imm;
 
     }
 
 
     if(ir==divi){
+        //DIVI: Dividir o valor de reg[ro0] pelo valor de IMM
         reg[ro0] = reg[ro0]/imm;
 
     }
 
 
     if(ir==lsh){
+        //LSH(LEFT SHIFT): Desloca o valor do reg[ro0] a IMM posicoes a esquerda.
         reg[ro0] = reg[ro0]<<imm;
 
     }
 
 
     if(ir==rsh){
+        //RSH (RIGHT SHIFT): Desloca o valor de reg[ro0] a IMM posiceoes a direita.
         reg[ro0] = reg[ro0]>>imm;
 
     }
