@@ -4,15 +4,15 @@
 
 //Variavéis para a CPU
 unsigned char memoria[154];
-unsigned int mbr;         // 32 bits
-unsigned int mar;         // 32 bits, mas precisa apenas de 21
-unsigned char ir;          // 8 bits
-unsigned char ro0;         // 8 bits, mas deveria ser de 3 bits
-unsigned char ro1;         // 8 bits, mas deveria ser de 3 bits
-unsigned int imm;         // 32 bits, mas deveria ser de 21 bits
-unsigned int pc = 0;      // 32 bits
-unsigned char l, g, e;     // 8 bits
-unsigned int reg[8];      // 32bits
+unsigned int mbr;          // 32 bits
+unsigned int mar;          // 32 bits, mas precisa apenas de 21
+unsigned char ir;          //  8 bits
+unsigned char ro0;         //  8 bits, mas deveria ser de 3 bits
+unsigned char ro1;         //  8 bits, mas deveria ser de 3 bits
+unsigned int imm;          // 32 bits, mas deveria ser de 21 bits
+unsigned int pc = 0;       // 32 bits
+unsigned char l, g, e;     //  8 bits
+unsigned int reg[8];       // 32bits
 
 int count = 0;
 
@@ -268,23 +268,24 @@ void executa(){
 
 int main() {
     memoria[0] = 0x13; //0001 0010 OP
-    memoria[1] = 0x10; //0001 0000 RO0 e RO1
-    memoria[2] = 0x00; //0000 0000
+    memoria[1] = 0x40; //0100 0000 RO0 e RO1
+    memoria[2] = 0x21; //0010 0001
     memoria[3] = 0x1e; //0001 1101
     memoria[4] = 0x16; //0001 0110
-    memoria[5] = 0x0;
-    memoria[6] = 0x0;
-    memoria[7] = 0x14;
-    memoria[30] = 0x0;
-    memoria[31] = 0x0;
-    memoria[32] = 0x0;
-    memoria[33] = 0xf;
+    memoria[5] = 0x0;  //0000 0000
+    memoria[6] = 0x0;  //0000 0000
+    memoria[7] = 0x14; //0001 0100
+    memoria[30] = 0x0; //0000 0000
+    memoria[31] = 0x0; //0000 0000
+    memoria[32] = 0x0; //0000 0000
+    memoria[33] = 0xf; //0000 1111
     //while(ir!=hlt){
     busca();
     printf("%x", mbr);
     decodifica();
     executa();
-    printf("%x", reg[ro0]);
+    printf("\n %x", ro0);
+    printf("\n %x", reg[0]);
    // }
 
 }
