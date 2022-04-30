@@ -23,17 +23,7 @@ void busca(){
     }
 };
 
-//void busca(){
-//    mar = pc;
-//    mbr = memoria[mar++]; //mbr = 32 bits |  memoria = 8 bits 32/8  =     mbr =0000 0000 0000 0000  xxxx xxxx yyyy yyyy
-//
-//    for(int i =0; i<3; i++) {
-//        mbr = mbr << 8;
-//        mbr = (mbr | memoria[mar++]);
-//    }
-//}
 
-//
 void decodifica(){
     ir = mbr >> 24;
 
@@ -296,9 +286,6 @@ void executa(){
 
 
 
-
-
-
 int main() {
     memoria[0] = 0x13; //0001 0010 OP
     memoria[1] = 0x40; //0100 0000 RO0 e RO1
@@ -314,7 +301,7 @@ int main() {
     memoria[33] = 0xf; //0000 1111
 
     busca();
-    printf("%x", mbr);
+    printf("valor do MBR: %x", mbr);
     decodifica();
     executa();
 
