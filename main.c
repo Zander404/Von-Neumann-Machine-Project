@@ -3,7 +3,7 @@
 #include "Cpu.h"
 
 //Variavéis para a CPU
-unsigned char memoria[154];//  8 bits
+unsigned char memoria[154];//  8 bits 0000 0000
 unsigned int mbr;          // 32 bits
 unsigned int mar;          // 32 bits, mas precisa apenas de 21
 unsigned char ir;          //  8 bits
@@ -11,7 +11,7 @@ unsigned char ro0;         //  8 bits, mas deveria ser de 3 bits
 unsigned char ro1;         //  8 bits, mas deveria ser de 3 bits
 unsigned int imm;          // 32 bits, mas deveria ser de 21 bits
 unsigned int pc = 0;       // 32 bits
-unsigned char l, g, e;     //  8 bits
+unsigned char l, g, e;     //  8 bits lower, greater, equal
 unsigned int reg[8];       // 32bits
 
 void busca(){
@@ -19,13 +19,25 @@ void busca(){
     mbr = memoria[mar++];
     for (int i = 0; i<3; i++){
         mbr = mbr  << 8;
-        mbr = (mbr | memoria[mar++] );
+        mbr = (mbr | memoria[mar++]);
     }
 };
 
+//void busca(){
+//    mar = pc;
+//    mbr = memoria[mar++]; //mbr = 32 bits |  memoria = 8 bits 32/8  =     mbr =0000 0000 0000 0000  xxxx xxxx yyyy yyyy
+//
+//    for(int i =0; i<3; i++) {
+//        mbr = mbr << 8;
+//        mbr = (mbr | memoria[mar++]);
+//    }
+//}
+
+//
 void decodifica(){
     ir = mbr >> 24;
-    if(ir >= 2 & ir <= 10) {
+
+    if( ir >= 0x02 & ir <=0xa ) {
         //formato de funcoes basicas de matematicas
         ro0 = (mbr&mask0)>>21;
         ro1 = (mbr&mask1)>>18;
@@ -34,29 +46,32 @@ void decodifica(){
         printf("\n %x", ro1);
     }
 
-    if(ir == 11 ){
+    if(ir == 0xb ){
         // formato para o commando do tipo NOT
         ro0 = (mbr&mask0)>>21;
     }
 
-    if(ir >=12 & ir<=18){
+    if(ir >= 0xc & ir<=0x12){
         // formato de funcao jump
         mar = mbr & maskendereco;
     }
 
-    if(ir>=19 & ir<=20){
+    if(ir>=0x13 & ir<=0x14){
         //formato para a funcao store e load
         ro0 = (mbr&mask0)>>21;
         mar = (mbr&maskendereco);
     }
-    if(ir>=21 & ir<= 27){
+    if(ir>=0x15 & ir<= 0x1b){
         //formato para a funcao movi, addi, subi
 
         ro0 = (mbr&mask0)>>21;
-        imm = mbr&maskendereco;
+        imm = (mbr&maskendereco);
 
     }
 }
+
+
+
 
 void executa(){
 
@@ -297,16 +312,14 @@ int main() {
     memoria[31] = 0x0; //0000 0000
     memoria[32] = 0x0; //0000 0000
     memoria[33] = 0xf; //0000 1111
-    //while(ir!=hlt){
+
     busca();
     printf("%x", mbr);
     decodifica();
     executa();
 
 
-    //printf("\n %x", reg[ro0]);
-    //printf("\n %x", reg[0]);
-    //printf("\n %x", ir);
-    //}
-
-}
+    printf("\n print reg[ro0]: %x", reg[ro0]);
+    printf("\n print ro0:  %x", ro0);
+    printf("\n print ir:  %x", ir);
+    }
