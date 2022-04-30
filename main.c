@@ -223,6 +223,7 @@ void executa(){
     if(ir==ld){
         //LOAD: Carregue o valor armazenado no endereco de memoria[mar] para o registrador[ro0].
         reg[ro0] = memoria[mar];
+        pc+=4;
 
     }
 

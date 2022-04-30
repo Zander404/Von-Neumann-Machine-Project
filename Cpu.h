@@ -49,7 +49,7 @@
 #define maskendereco 0x0003ffff //pegar o endereco
 
 
-//Registradores
+//Definicao da posicao dos Registradores
 #define r0 reg[000]
 #define r1 reg[001]
 #define r2 reg[010]

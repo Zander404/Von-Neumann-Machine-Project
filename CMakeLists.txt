@@ -3,4 +3,4 @@ project(CPU C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(CPU main.c Cpu.h)
+add_executable(CPU main.c Cpu.h "Leitor de arquivo.c")
