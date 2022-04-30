@@ -49,5 +49,17 @@
 #define maskendereco 0x0003ffff //pegar o endereco
 
 
+//Registradores
+#define r0 reg[000]
+#define r1 reg[001]
+#define r2 reg[010]
+#define r3 reg[011]
+#define r4 reg[100]
+#define r5 reg[101]
+#define r6 reg[110]
+#define r7 reg[111]
+
+
+
 //0x0     0   0     3  f     f    f    f
 //0      0   0     11 1111 1111 1111 1111
