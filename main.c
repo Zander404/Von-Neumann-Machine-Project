@@ -92,7 +92,7 @@ void executa(){
     }
 
 
-    if(ir==mult){
+    if(ir==mul){
         //Multiplicar o valor de reg[r0] do valor de reg[ro1]
         reg[ro0] = reg[ro0]*reg[ro1];
         pc+=4;
@@ -266,7 +266,7 @@ void executa(){
     }
 
 
-    if(ir==multi){
+    if(ir==muli){
         //MULT: Multiplica o valor de reh[ro0] com o valor de registrador IMM.
         reg[ro0] = reg[ro0]*imm;
 
@@ -313,7 +313,7 @@ int main() {
 
     busca();
     printf("valor do MBR: %x", mbr);
-    printf("\n print MAR, %x", mar);
+    printf("\n print MAR: %x", mar);
     decodifica();
     executa();
 
