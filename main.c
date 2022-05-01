@@ -5,7 +5,7 @@
 //Variavéis para a CPU
 unsigned char memoria[154];//  8 bits 0000 0000
 unsigned int mbr;          // 32 bits
-unsigned int mar;          // 32 bits, mas precisa apenas de 21
+unsigned int mar=0;          // 32 bits, mas precisa apenas de 21
 unsigned char ir;          //  8 bits
 unsigned char ro0;         //  8 bits, mas deveria ser de 3 bits
 unsigned char ro1;         //  8 bits, mas deveria ser de 3 bits
@@ -222,7 +222,12 @@ void executa(){
 
     if(ir==ld){
         //LOAD: Carregue o valor armazenado no endereco de memoria[mar] para o registrador[ro0].
-        reg[ro0] = memoria[mar];
+        mbr = memoria[mar++];
+        for (int i = 0; i<3; i++){
+            mbr = mbr  << 8;
+            mbr = (mbr | memoria[mar++]);
+        }
+        reg[ro0]=mbr;
         pc+=4;
 
     }
@@ -230,7 +235,12 @@ void executa(){
 
     if(ir==st){
         //STORE: Armazene o valor do registrador[ro0] na posicao de memoria[mar].
-        memoria[mar] = reg[ro0];
+        mbr = reg[ro0];
+        memoria[mar] = (mbr&0xff000000)>>24;
+        memoria[mar+1] = (mbr&0x00ff0000)>>16;
+        memoria[mar+2] = (mbr&0x0000ff00)>>8;
+        memoria[mar+3] = (mbr&0x000000ff);
+
 
     }
 
@@ -290,8 +300,8 @@ void executa(){
 int main() {
     memoria[0] = 0x13; //0001 0010 OP
     memoria[1] = 0x40; //0100 0000 RO0 e RO1
-    memoria[2] = 0x21; //0010 0001
-    memoria[3] = 0x1e; //0001 1101
+    memoria[2] = 0x00; //0000 0001
+    memoria[3] = 0x00; //0001 1101
     memoria[4] = 0x16; //0001 0110
     memoria[5] = 0x0;  //0000 0000
     memoria[6] = 0x0;  //0000 0000
@@ -303,6 +313,7 @@ int main() {
 
     busca();
     printf("valor do MBR: %x", mbr);
+    printf("\n print MAR, %x", mar);
     decodifica();
     executa();
 
@@ -310,4 +321,5 @@ int main() {
     printf("\n print reg[ro0]: %x", reg[ro0]);
     printf("\n print ro0:  %x", ro0);
     printf("\n print ir:  %x", ir);
+    printf("\n print MAR, %x", mar);
     }
