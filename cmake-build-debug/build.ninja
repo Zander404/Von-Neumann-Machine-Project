@@ -55,12 +55,6 @@ build CMakeFiles/CPU.dir/main.c.obj: C_COMPILER__CPU_Debug C$:/Users/Zander/CLio
   OBJECT_DIR = CMakeFiles\CPU.dir
   OBJECT_FILE_DIR = CMakeFiles\CPU.dir
 
-build CMakeFiles/CPU.dir/Leitor_de_arquivo.c.obj: C_COMPILER__CPU_Debug C$:/Users/Zander/CLionProjects/CPU/Leitor$ de$ arquivo.c || cmake_object_order_depends_target_CPU
-  DEP_FILE = CMakeFiles\CPU.dir\Leitor_de_arquivo.c.obj.d
-  FLAGS = -g -std=gnu99
-  OBJECT_DIR = CMakeFiles\CPU.dir
-  OBJECT_FILE_DIR = CMakeFiles\CPU.dir
-
 
 # =============================================================================
 # Link build statements for EXECUTABLE target CPU
@@ -69,7 +63,7 @@ build CMakeFiles/CPU.dir/Leitor_de_arquivo.c.obj: C_COMPILER__CPU_Debug C$:/User
 #############################################
 # Link the executable CPU.exe
 
-build CPU.exe: C_EXECUTABLE_LINKER__CPU_Debug CMakeFiles/CPU.dir/main.c.obj CMakeFiles/CPU.dir/Leitor_de_arquivo.c.obj
+build CPU.exe: C_EXECUTABLE_LINKER__CPU_Debug CMakeFiles/CPU.dir/main.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\CPU.dir
