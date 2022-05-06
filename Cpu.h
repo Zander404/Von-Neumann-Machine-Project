@@ -1,6 +1,3 @@
-// Função de manipulção de arquivo
-
-
 //Codificação: tipo 1
 #define hlt 0x00
 #define nop 0x01
@@ -46,7 +43,7 @@
 //Mascaras para a coleta de dados da memoria
 #define mask0 0x00e00000 //pegar o Ro0
 #define mask1 0x001c0000 //pegar o Ro1
-#define maskendereco 0x0003ffff //pegar o endereco
+#define maskendereco 0x001fffff //pegar o endereco
 
 
 //Definicao da posicao dos Registradores
